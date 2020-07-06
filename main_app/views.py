@@ -5,3 +5,6 @@ from django.http import HttpResponse
 def index(request):
     my_dict = {'insert_me': 'Abinash Rana'}
     return render(request, 'main_app/index.html', context=my_dict)
+
+def dahsboard(request):
+    return render(request, 'main_app/dashboard.html')
