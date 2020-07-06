@@ -13,12 +13,21 @@
 }
 
 h1{
-    color: teal;
+    color: green;
 }
 
 div{
     height: 100px;
     width: 100px;
+    margin: 20px;
     background: var(--primary);
     box-shadow: var(--shadow);
+}
+
+table,th,td{
+    border: 1px solid black;
+}
+
+table{
+    width: 100%;
 }
