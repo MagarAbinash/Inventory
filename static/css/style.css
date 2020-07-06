@@ -23,3 +23,11 @@ div{
     background: var(--primary);
     box-shadow: var(--shadow);
 }
+
+table,th,td{
+    border: 1px solid black;
+}
+
+table{
+    width: 100%;
+}
