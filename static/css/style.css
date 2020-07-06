@@ -1,0 +1,24 @@
+:root{
+    --primary: #ffffff;
+    --secondary: #f1f2f6;
+    --fitted: #dfe4ea;
+    --primaryDark: #2f3542;
+    --fittedDark: #747d8c;
+    --secondaryDark: #57606f;
+    --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+}
+
+* {
+    background: var(--secondary);
+}
+
+h1{
+    color: teal;
+}
+
+div{
+    height: 100px;
+    width: 100px;
+    background: var(--primary);
+    box-shadow: var(--shadow);
+}
