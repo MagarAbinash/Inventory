@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'main_app:index' %}">Home</a>
+            </li>
+            <li>
+                <a href="{% url 'admin:index' %}">Admin</a>
+            </li>
+            <li>
+                <a href="{% url 'main_app:dahsboard' %}">Dashboard</a>
+            </li>
+            <li>
+                <a href="{% url 'main_app:supForms' %}">Supplier</a>
+            </li>
+            <li>
+                <a href="{% url 'main_app:catForms' %}">Category</a>
+            </li>
+            <li>
+                <a href="{% url 'main_app:subCatForms' %}">Sub Category</a>
+            </li>
+            <li>
+                <a href="{% url 'main_app:itemForms' %}">Item</a>
+            </li>
+            <li>
+                <a href="{% url 'main_app:brandForms' %}">Brand</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="conatiner">
+    
+        {% block body_block %}
+            
+        {% endblock body_block %}
+
+    </div>
+    
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

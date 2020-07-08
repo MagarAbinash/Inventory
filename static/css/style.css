@@ -1,0 +1,59 @@
+:root{
+    --primary: #ffffff;
+    --secondary: #f1f2f6;
+    --fitted: #dfe4ea;
+    --primaryDark: #2f3542;
+    --fittedDark: #747d8c;
+    --secondaryDark: #57606f;
+    --shadow: 0 1px 5px rgba(104, 104, 104, 0.8);
+}
+
+* {
+    background: var(--secondary);
+}
+
+h1{
+    color: green;
+}
+
+table,th,td{
+    border: 1px solid black;
+}
+
+div{
+    margin: 10px;
+}
+
+table{
+    width: 100%;
+}
+
+nav{
+    height: 30px;
+    background: var(--primaryDark);
+}
+
+nav ul{
+    display: grid;
+    height: 100%;
+    grid-template-columns: repeat(8, 200px);
+    justify-content: flex-end;
+    background: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li{
+    list-style: none;
+    height: 100%;
+    background: transparent;
+    display: block;
+}
+
+nav ul li a{
+    height: 100%;
+    text-decoration: none;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--primary);
+}
