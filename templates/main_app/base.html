@@ -10,30 +10,24 @@
 <body>
     <nav>
         <ul>
-            <li>
-                <a href="{% url 'main_app:index' %}">Home</a>
-            </li>
-            <li>
-                <a href="{% url 'admin:index' %}">Admin</a>
-            </li>
-            <li>
-                <a href="{% url 'main_app:dahsboard' %}">Dashboard</a>
-            </li>
-            <li>
-                <a href="{% url 'main_app:supForms' %}">Supplier</a>
-            </li>
-            <li>
-                <a href="{% url 'main_app:catForms' %}">Category</a>
-            </li>
-            <li>
-                <a href="{% url 'main_app:subCatForms' %}">Sub Category</a>
-            </li>
-            <li>
-                <a href="{% url 'main_app:itemForms' %}">Item</a>
-            </li>
-            <li>
-                <a href="{% url 'main_app:brandForms' %}">Brand</a>
-            </li>
+            
+            {% if request.user.is_staff %}
+                                
+                <li>
+                    <a href="{% url 'main_app:index' %}">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'main_app:dashboard' %}">Dashboard</a>
+                </li>
+            {% else %}
+
+                <li>
+                    <a href="{% url 'main_app:accountSettings' %}">Settings</a>
+                </li>
+
+            {% endif %}
+            <span>Hello, {{ request.user }}</span>
+            <span><a href="{% url 'main_app:logout' %}">Logout</a></span>
         </ul>
     </nav>
 
