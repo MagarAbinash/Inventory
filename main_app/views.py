@@ -78,7 +78,7 @@ def purchase(request):
     return render(request, 'main_app/forms.html', context)
 
 @login_required(login_url='main_app:login')
-@allowed_user(allowed_roles=['Admin', 'Customer'])
+@allowed_user(allowed_roles=['Admin'])
 def sales(request):
     form = SalesForm()
     if request.method == 'POST':
@@ -149,3 +149,24 @@ def accountSettings(request):
             form.save()
     context = {'form': form}
     return render(request, 'main_app/customer_settings.html', context)
+
+@login_required(login_url='main_app:login')
+@allowed_user(allowed_roles=['Customer'])
+def customerPurchase(request):
+    customer = request.user.customer
+    form = SalesForm(initial={'customer': customer})
+    if request.method == 'POST':
+        form = SalesForm(request.POST)
+        if form.is_valid():
+            item = form.cleaned_data.get('item')
+            qty = form.cleaned_data.get('quantity')
+            if qty <= item.quantity:
+                sales = form.save()
+                print(sales)
+                return redirect('main_app:userPage')
+
+            else:
+                messages.info(request, "Not enough item")
+
+    context = {'form': form}
+    return render(request, 'main_app/customer_purchase.html', context)
