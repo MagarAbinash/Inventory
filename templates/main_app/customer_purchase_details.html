@@ -3,5 +3,10 @@
 
 {% block body_block %}
 <a href="{% url 'main_app:index' %}">Back to Profile</a>
-<h1>This is purchase detials of the single item {{ item }}</h1>
+<h1>This is purchase detials of the single item</h1>
+<h3>Item: {{ item.item.name }}</h3>
+<h3>Price: {{ item.item.price }}</h3>
+<h3>Quantity: {{ item.quantity }}</h3>
+<h3>Date: {{ item.date }}</h3>
+
 {% endblock body_block %}

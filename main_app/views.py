@@ -12,7 +12,7 @@ from django.contrib.auth.models import Group
 @login_required(login_url='main_app:login')
 @admin_only
 def index(request):
-    my_dict = {'insert_me': 'Abinash Rana'}
+    my_dict = {}
     return render(request, 'main_app/index.html', context=my_dict)
 
 @login_required(login_url='main_app:login')
