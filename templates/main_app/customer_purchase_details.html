@@ -1,0 +1,7 @@
+{% extends 'main_app/base.html' %}
+
+
+{% block body_block %}
+<a href="{% url 'main_app:index' %}">Back to Profile</a>
+<h1>This is purchase detials of the single item {{ item }}</h1>
+{% endblock body_block %}

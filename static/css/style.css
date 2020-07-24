@@ -85,3 +85,18 @@ nav ul li a:hover,  nav ul span:hover, nav ul span a:hover{
         text-align: center;
     }
 }
+
+.settings_container{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-content: center;
+}
+
+.img{
+    height: 200px;
+    width: 200px;
+}
+img{
+    height: 100%;
+    width: 100%;
+}

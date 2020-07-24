@@ -2,10 +2,16 @@
 
 {% block body_block %}
 <a href="{% url 'main_app:index' %}">Back to Profile</a>
-<img src="{{ request.user.customer.profile_pic.url }}" alt="Profile Pic">
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update">
-</form>
+<div class="settings_container">
+    <div class="img">
+        <img src="{{ request.user.customer.profile_pic.url }}" alt="Profile Pic">
+    </div>
+    <div class="form">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Update">
+        </form>
+    </div>
+</div>
 {% endblock body_block %}

@@ -19,7 +19,7 @@
                 <td>{{ item.item.price }}</td>
                 <td>{{ item.quantity }}</td>
                 <td>{{ item.date }}</td>
-                <td><a href="#">Details</a></td>
+                <td><a href="{% url 'main_app:purchaseDetails' item.id %}">Details</a></td>
             </tr>
         {% endfor %}
 

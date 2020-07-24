@@ -170,3 +170,10 @@ def customerPurchase(request):
 
     context = {'form': form}
     return render(request, 'main_app/customer_purchase.html', context)
+
+@login_required(login_url='main_app:login')
+@allowed_user(allowed_roles=['Customer'])
+def purchaseDetails(request,pk):
+    purchase = Sales.objects.get(id=pk)
+    context = {'item': purchase}
+    return render(request, 'main_app/customer_purchase_details.html', context)
