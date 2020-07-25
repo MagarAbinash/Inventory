@@ -100,3 +100,12 @@ img{
     height: 100%;
     width: 100%;
 }
+
+.contents{
+    display: flex;
+}
+
+/* .tables{
+    overflow-y: scroll;
+    height: 100%;
+} */

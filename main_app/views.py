@@ -9,6 +9,7 @@ from .decorators import *
 from django.contrib.auth.models import Group
 #Create your views here.
 
+# Admin Pages
 @login_required(login_url='main_app:login')
 @admin_only
 def index(request):
@@ -19,8 +20,16 @@ def index(request):
 @allowed_user(allowed_roles=['Admin'])
 def dashboard(request):
     item = Item.objects.all()
+    category = Category.objects.all()
+    subcategory = SubCategory.objects.all()
+    brand = Brand.objects.all()
+    supplier = Supplier.objects.all()
     data_dict = {
         'item_table': item,
+        'category_table': category,
+        'subCategory_table': subcategory,
+        'brand_table': brand,
+        'supplier_table': supplier,
     }
     return render(request, 'main_app/dashboard.html', context=data_dict)
 
@@ -97,6 +106,148 @@ def sales(request):
     context = {'form': form}
     return render(request, 'main_app/forms.html', context)
 
+@login_required(login_url='main_app:login')
+@allowed_user(allowed_roles=['Admin'])
+def createCategory(request):
+    form = categoryForm()
+    if request.method == 'POST':
+        form = categoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    context = {'form': form}
+    return render(request, 'main_app/forms.html', context)
+
+@login_required(login_url='main_app:login')
+@allowed_user(allowed_roles=['Admin'])
+def updateCategory(request, pk):
+    item = Category.objects.get(id=pk)
+    form = categoryForm(instance=item)
+    if request.method == "POST":
+        form = categoryForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('main_app:dashboard')
+    
+    return render(request, 'main_app/forms.html', {'form':form})
+
+@login_required(login_url='main_app:login')
+@allowed_user(allowed_roles=['Admin'])
+def deleteCategory(request, pk):
+    item = Category.objects.get(id=pk)
+    if request.method == 'POST':
+        item.delete()
+        return redirect('main_app:dashboard')
+    context = {'item': item, 'tableName': 'deleteItem'}
+    return render(request, 'main_app/deleteItem.html', context)
+
+@login_required(login_url='main_app:login')
+@allowed_user(allowed_roles=['Admin'])
+def createSubCategory(request):
+    form = subCategoryForm()
+    if request.method == 'POST':
+        form = subCategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    context = {'form': form}
+    return render(request, 'main_app/forms.html', context)
+
+@login_required(login_url='main_app:login')
+@allowed_user(allowed_roles=['Admin'])
+def updateSubCategory(request, pk):
+    item = SubCategory.objects.get(id=pk)
+    form = subCategoryForm(instance=item)
+    if request.method == "POST":
+        form = subCategoryForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('main_app:dashboard')
+    
+    return render(request, 'main_app/forms.html', {'form':form})
+
+@login_required(login_url='main_app:login')
+@allowed_user(allowed_roles=['Admin'])
+def deleteSubCategory(request, pk):
+    item = SubCategory.objects.get(id=pk)
+    if request.method == 'POST':
+        item.delete()
+        return redirect('main_app:dashboard')
+    context = {'item': item, 'tableName': 'deleteItem'}
+    return render(request, 'main_app/deleteItem.html', context)
+
+@login_required(login_url='main_app:login')
+@allowed_user(allowed_roles=['Admin'])
+def createSupplier(request):
+    form = supplierForm()
+    if request.method == 'POST':
+        form = supplierForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    context = {'form': form}
+    return render(request, 'main_app/forms.html', context)
+
+@login_required(login_url='main_app:login')
+@allowed_user(allowed_roles=['Admin'])
+def updateSupplier(request, pk):
+    item = Supplier.objects.get(id=pk)
+    form = supplierForm(instance=item)
+    if request.method == "POST":
+        form = supplierForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('main_app:dashboard')
+    
+    return render(request, 'main_app/forms.html', {'form':form})
+
+@login_required(login_url='main_app:login')
+@allowed_user(allowed_roles=['Admin'])
+def deleteSupplier(request, pk):
+    item = Supplier.objects.get(id=pk)
+    if request.method == 'POST':
+        item.delete()
+        return redirect('main_app:dashboard')
+    context = {'item': item, 'tableName': 'deleteItem'}
+    return render(request, 'main_app/deleteItem.html', context)
+
+
+@login_required(login_url='main_app:login')
+@allowed_user(allowed_roles=['Admin'])
+def createBrand(request):
+    form = brandForm()
+    if request.method == 'POST':
+        form = brandForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    context = {'form': form}
+    return render(request, 'main_app/forms.html', context)
+
+@login_required(login_url='main_app:login')
+@allowed_user(allowed_roles=['Admin'])
+def updateBrand(request, pk):
+    item = Brand.objects.get(id=pk)
+    form = brandForm(instance=item)
+    if request.method == "POST":
+        form = brandForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('main_app:dashboard')
+    
+    return render(request, 'main_app/forms.html', {'form':form})
+
+@login_required(login_url='main_app:login')
+@allowed_user(allowed_roles=['Admin'])
+def deleteBrand(request, pk):
+    item = Brand.objects.get(id=pk)
+    if request.method == 'POST':
+        item.delete()
+        return redirect('main_app:dashboard')
+    context = {'item': item, 'tableName': 'deleteItem'}
+    return render(request, 'main_app/deleteItem.html', context)
+
+# Login and Register Pages
 @unauthenticated_user
 def loginPage(request):
     if request.method == 'POST':
@@ -131,6 +282,7 @@ def logoutUser(request):
     return redirect('main_app:login')
 
 
+# User Pages
 @login_required(login_url='main_app:login')
 @allowed_user(allowed_roles=['Customer'])
 def userPage(request):

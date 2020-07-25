@@ -3,49 +3,152 @@
 
 {% block body_block %}
     <h1>Here goes the dashboard</h1>
-    <div>
-        <h2>Items table</h2>
-        {% if item_table %}
+    <div class="contents">
+        <div class="sidebar">
+            <ul>
+                <li><a class="btn" href="{% url 'main_app:itemForms' %}">Create Item</a></li>
+                <li><a class="btn" href="{% url 'main_app:createCategory' %}">Create Category</a></li>
+                <li><a class="btn" href="{% url 'main_app:createSubCategory' %}">Create SubCategory</a></li>
+                <li><a class="btn" href="{% url 'main_app:createBrand' %}">Create Brand</a></li>
+                <li><a class="btn" href="{% url 'main_app:createSupplier' %}">Create Supplier</a></li>
+                <li><a class="btn" href="{% url 'main_app:purchase' %}">Make Purchase</a></li>
+                <li><a class="btn" href="{% url 'main_app:sales' %}">Make Sales</a></li>
+            </ul>
+        </div>
 
-        <a class="btn" href="{% url 'main_app:itemForms' %}">Create Item</a>
-        <a class="btn" href="{% url 'main_app:purchase' %}">Make Purchase</a>
-        <a class="btn" href="{% url 'main_app:sales' %}">Make Sales</a>
-        <table>
-            <thead>
-                <th>Item</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Brand</th>
-                <th>Category</th>
-                <th>Sub Category</th>
-                <th>Supplier</th>
-                <th>Action</th>
-            </thead>
-    
-    
-            {% for item in item_table %}
-    
-            <tr>
-                <td>{{ item.name }}</td>
-                <td>{{ item.price }}</td>
-                <td>{{ item.quantity }}</td>
-                <td>{{ item.brand }}</td>
-                <td>{{ item.cat }}</td>
-                <td>{{ item.subCat }}</td>
-                <td>{{ item.supplier }}</td>
-                <td>
-                    <a class="btn" href="{% url 'main_app:updateItem' item.id %}">Update</a>
-                    <a class="btn" href="{% url 'main_app:deleteItem' item.id %}">Remove</a>
-                </td>
-            </tr>
-    
-            {% endfor %}
-    
-    
-        </table>
-    
-        {% endif %}
+        <div class="tables">
+        <h2>Items table</h2>
+
+            {% if item_table %}
+            <table>
+                <thead>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Brand</th>
+                    <th>Category</th>
+                    <th>Sub Category</th>
+                    <th>Supplier</th>
+                    <th>Action</th>
+                </thead>
             
+            
+                {% for item in item_table %}
+            
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.brand }}</td>
+                    <td>{{ item.cat }}</td>
+                    <td>{{ item.subCat }}</td>
+                    <td>{{ item.supplier }}</td>
+                    <td>
+                        <a class="btn" href="{% url 'main_app:updateItem' item.id %}">Update</a>
+                        <a class="btn" href="{% url 'main_app:deleteItem' item.id %}">Remove</a>
+                    </td>
+                </tr>
+            
+                {% endfor %}
+            
+            
+            </table>
+            
+            {% endif %}
+
+            <h2>Categor table</h2>
+            {% if category_table %}
+            <table>
+                <thead>
+                    <th>SN</th>
+                    <th>Category</th>
+                    <th>Action</th>
+                </thead>
+                {% for item in category_table %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>
+                        <a class="btn" href="{% url 'main_app:updateCategory' item.id %}">Update</a>
+                        <a class="btn" href="{% url 'main_app:deleteCategory' item.id %}">Remove</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+
+            <h2>SubCategor table</h2>
+            {% if subCategory_table %}
+            <table>
+                <thead>
+                    <th>SN</th>
+                    <th>Category</th>
+                    <th>Sub Category</th>
+                    <th>Action</th>
+                </thead>
+                {% for item in subCategory_table %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.cat.name }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>
+                        <a class="btn" href="{% url 'main_app:updateSubCategory' item.id %}">Update</a>
+                        <a class="btn" href="{% url 'main_app:deleteSubCategory' item.id %}">Remove</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+
+            <h2>Brand table</h2>
+            {% if brand_table %}
+            <table>
+                <thead>
+                    <th>SN</th>
+                    <th>Brand</th>
+                    <th>Action</th>
+                </thead>
+                {% for item in brand_table %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>
+                        <a class="btn" href="{% url 'main_app:updateBrand' item.id %}">Update</a>
+                        <a class="btn" href="{% url 'main_app:deleteBrand' item.id %}">Remove</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+
+            <h2>Brand table</h2>
+            {% if supplier_table %}
+            <table>
+                <thead>
+                    <th>SN</th>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </thead>
+                {% for item in supplier_table %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.contact }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.address }}</td>
+                    <td>
+                        <a class="btn" href="{% url 'main_app:updateSupplier' item.id %}">Update</a>
+                        <a class="btn" href="{% url 'main_app:deleteSupplier' item.id %}">Remove</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+        </div>
+                    
     </div>
 {% endblock body_block %}
     
