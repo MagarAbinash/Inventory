@@ -6,8 +6,10 @@ app_name = 'main_app'
 urlpatterns = [
     path('', views.index, name='index'),
     path('dashboard/', views.dashboard, name='dashboard'),
+
     path('user/', views.userPage, name='userPage'),
     path('settings/', views.accountSettings, name='accountSettings'),
+    
     path('user_purchase/', views.customerPurchase, name='userPurchase'),
     path('purchase_details/<str:pk>', views.purchaseDetails, name='purchaseDetails'),
 
