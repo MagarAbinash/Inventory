@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <nav>
+        <ul>
+            
+            {% if request.user.is_staff %}
+                                
+                <li>
+                    <a href="{% url 'main_app:index' %}">Home</a>
+                </li>
+                <li>
+                    <a href="{% url 'main_app:dashboard' %}">Dashboard</a>
+                </li>
+            {% else %}
+
+                <li>
+                    <a href="{% url 'main_app:accountSettings' %}">Settings</a>
+                </li>
+
+            {% endif %}
+            <span>Hello, {{ request.user }}</span>
+            <span><a href="{% url 'main_app:logout' %}">Logout</a></span>
+        </ul>
+    </nav>
+
+    <div class="conatiner">
+    
+        {% block body_block %}
+            
+        {% endblock body_block %}
+
+    </div>
+    
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

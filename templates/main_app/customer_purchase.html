@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends 'main_app/base.html' %}
+
+{% block body_block %}
+<a class="btn" href="{% url 'main_app:userPage' %}">Go back</a>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn" value="Submit">
+</form>
+
+{% for message in messages %}
+    {{ message }}
+{% endfor %}
+
+
+{% endblock body_block %}

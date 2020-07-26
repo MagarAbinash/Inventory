@@ -1,0 +1,28 @@
+{% extends 'main_app/base.html' %}
+
+
+{% block body_block %}
+    <h1>Hello, {{ request.user }}</h1>
+    <a class="btn" href="{% url 'main_app:userPurchase' %}">Make Purchase</a>
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Date</th>
+            <th>Details</th>
+        </tr>
+        
+        {% for item in purchase %}
+            <tr>
+                <td>{{ item.item.name }}</td>
+                <td>{{ item.item.price }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.date }}</td>
+                <td><a href="{% url 'main_app:purchaseDetails' item.id %}">Details</a></td>
+            </tr>
+        {% endfor %}
+
+    </table>
+{% endblock body_block %}
+    
