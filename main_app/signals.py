@@ -15,6 +15,10 @@ def sales_stock(sender, instance, created, **kwargs):
     if created:
         remaining_qty = instance.item.quantity - instance.quantity
         item = Item.objects.get(id=instance.item.id)
+        if remaining_qty == 0:
+            item.available = False
+        else:
+            item.available = True
         item.quantity = remaining_qty
         item.save()
 
@@ -24,6 +28,10 @@ def purchase_stock(sender, instance, created, **kwargs):
     if created:
         remaining_qty = instance.item.quantity + instance.quantity
         item = Item.objects.get(id=instance.item.id)
+        if remaining_qty == 0:
+            item.available = False
+        else:
+            item.available = True
         item.quantity = remaining_qty
         item.save()
 

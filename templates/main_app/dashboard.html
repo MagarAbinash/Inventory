@@ -29,6 +29,7 @@
                     <th>Category</th>
                     <th>Sub Category</th>
                     <th>Supplier</th>
+                    <th>Availability</th>
                     <th>Action</th>
                 </thead>
             
@@ -43,6 +44,7 @@
                     <td>{{ item.cat }}</td>
                     <td>{{ item.subCat }}</td>
                     <td>{{ item.supplier }}</td>
+                    <td>{{ item.available }}</td>
                     <td>
                         <a class="btn" href="{% url 'main_app:updateItem' item.id %}">Update</a>
                         <a class="btn" href="{% url 'main_app:deleteItem' item.id %}">Remove</a>
