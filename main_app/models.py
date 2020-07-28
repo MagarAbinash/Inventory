@@ -46,6 +46,7 @@ class Item(models.Model):
     subCat = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True, blank=True)
     supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE,  null=True, blank=True)
     quantity = models.DecimalField(default=0, max_digits=5, decimal_places=0)
+    available = models.BooleanField(default=False, null=True, blank=True)
 
     def __str__(self):
         return self.name
