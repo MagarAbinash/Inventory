@@ -44,7 +44,7 @@ class Item(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, null=True, blank=True)
     cat = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     subCat = models.ForeignKey(SubCategory, on_delete=models.CASCADE, null=True, blank=True)
-    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE,  null=True, blank=True)
+    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE,  null=True, blank=True) # This is not solved
     quantity = models.DecimalField(default=0, max_digits=5, decimal_places=0)
     available = models.BooleanField(default=False, null=True, blank=True)
 

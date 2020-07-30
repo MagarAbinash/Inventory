@@ -1,0 +1,6 @@
+the supplier column might not be needed because an item can be bought from different supplier
+and in the item table a single supplier is only shown that is made with the first purchase so
+this might not be needed got to search for it
+
+we can show it differently by selecting supplier in order and show it to the manager what to do with the
+purchase orders to select the supplier
