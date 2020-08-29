@@ -11,7 +11,7 @@ urlpatterns = [
     path('settings/', views.accountSettings, name='accountSettings'),
     
     path('user_purchase/', views.customerPurchase, name='userPurchase'),
-    path('purchase_details/<str:pk>', views.purchaseDetails, name='purchaseDetails'),
+    path('user/purchase_details/<str:pk>/', views.purchaseDetails, name='purchaseDetails'),
 
     path('purchase/', views.purchase, name='purchase'),
     path('sales/', views.sales, name='sales'),

@@ -7,6 +7,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .decorators import *
 from django.contrib.auth.models import Group
+from django.http import JsonResponse
+from django.forms.models import model_to_dict
 #Create your views here.
 
 # Admin Pages
@@ -327,5 +329,5 @@ def customerPurchase(request):
 @allowed_user(allowed_roles=['Customer'])
 def purchaseDetails(request,pk):
     purchase = Sales.objects.get(id=pk)
-    context = {'item': purchase}
-    return render(request, 'main_app/customer_purchase_details.html', context)
+    item = Item.objects.get(id=purchase.item.id)
+    return JsonResponse({'list': model_to_dict(purchase), 'item': model_to_dict(item)}, status=200)

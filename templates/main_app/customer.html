@@ -4,7 +4,7 @@
 {% block body_block %}
     <h1>Hello, {{ request.user }}</h1>
     <a class="btn" href="{% url 'main_app:userPurchase' %}">Make Purchase</a>
-    <table id="item">
+    <table id="purchaseList">
         <tr>
             <th>Item</th>
             <th>Price</th>
@@ -14,17 +14,21 @@
         </tr>
         
         {% for item in purchase %}
-            <tr id="purchaseList" data-id="{{ item.id }}">
+            <tr">
                 <td>{{ item.item.name }}</td>
                 <td>{{ item.item.price }}</td>
                 <td>{{ item.quantity }}</td>
                 <td>{{ item.date }}</td>
                 <!-- <td><a href="{% url 'main_app:purchaseDetails' item.id %}">Details</a></td> -->
-                <td><a data-id="{{ item.id }}"  href="#">Details</a></td>
+                <td><button type="button" class='btn' data-id="{{ item.id }}" >Details</button></td>
             </tr>
         {% endfor %}
 
     </table>
+
+    <div class="details">
+
+    </div>
 {% endblock body_block %}
 
 
