@@ -1,10 +1,10 @@
 {% extends 'main_app/base.html' %}
 
-
+{% load static %}
 {% block body_block %}
     <h1>Hello, {{ request.user }}</h1>
     <a class="btn" href="{% url 'main_app:userPurchase' %}">Make Purchase</a>
-    <table>
+    <table id="item">
         <tr>
             <th>Item</th>
             <th>Price</th>
@@ -14,15 +14,22 @@
         </tr>
         
         {% for item in purchase %}
-            <tr>
+            <tr id="purchaseList" data-id="{{ item.id }}">
                 <td>{{ item.item.name }}</td>
                 <td>{{ item.item.price }}</td>
                 <td>{{ item.quantity }}</td>
                 <td>{{ item.date }}</td>
-                <td><a href="{% url 'main_app:purchaseDetails' item.id %}">Details</a></td>
+                <!-- <td><a href="{% url 'main_app:purchaseDetails' item.id %}">Details</a></td> -->
+                <td><a data-id="{{ item.id }}"  href="#">Details</a></td>
             </tr>
         {% endfor %}
 
     </table>
 {% endblock body_block %}
+
+
+{% block scriptspace %}
+    <script src="{% static 'js/customer.js' %}"></script>
+{% endblock scriptspace %}
+    
     
